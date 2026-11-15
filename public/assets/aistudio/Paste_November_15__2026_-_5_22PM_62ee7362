@@ -1,0 +1,1013 @@
+# SPACE PIONEERS – REFINEMENT PROMPT (ROUND 3)
+## Existing Application Improvements – Google AI Studio
+
+I want to make the following refinements to my existing application, **SPACE PIONEERS: Mission Beyond Earth**.
+
+This is an existing, functioning educational Moon exploration game for children aged 6–11.
+
+**IMPORTANT: DO NOT CREATE A NEW APPLICATION. DO NOT START FROM SCRATCH. DO NOT REBUILD OR REPLACE THE EXISTING GAME.**
+
+Your task is to inspect the current application and make the requested changes directly within its existing codebase.
+
+Before implementation:
+
+1. Inspect the current application structure and identify the relevant components.
+2. Understand the existing audio, animation, scene-transition, game-state and phase-management systems.
+3. Identify how the opening introduction, Moon Lab, Build Phase, Survive Phase and Mission Complete screens are currently implemented.
+4. Preserve all existing working features and gameplay mechanics.
+5. Modify only the components and systems necessary to implement these improvements.
+6. Avoid introducing duplicate components, unnecessary dependencies or conflicting state-management logic.
+
+Do not remove existing content unless explicitly instructed below.
+
+---
+
+# 1. REMOVE PRESENTATION MODE COMPLETELY
+
+The temporary Presentation Mode that was previously introduced is no longer required.
+
+Remove it from the existing application.
+
+Requirements:
+
+- Remove the Presentation Mode button and its interface.
+- Remove the temporary phase-skipping controls.
+- Remove presentation-only navigation options.
+- Remove presentation-only UI elements.
+- Remove any temporary presentation banners or indicators.
+- Remove presentation-specific shortcuts that are no longer required.
+
+However, inspect the implementation before deleting anything.
+
+If presentation mode introduced isolated state, configuration flags or helper functions, remove only those that are exclusively used by presentation mode.
+
+**Do not remove or damage the normal phase-transition system.**
+
+Do not accidentally remove legitimate gameplay progression, task navigation, tutorial logic, achievements or normal mission completion.
+
+After removal, verify that the player can still progress naturally through all four phases.
+
+---
+
+# 2. IMPROVE THE OPENING EARTH AND MOON VISUALS
+
+The 3D Earth in the opening introduction currently does not look sufficiently realistic.
+
+The Moon also appears almost as large as Earth, which is visually inaccurate.
+
+This needs to be corrected.
+
+## 2.1 Improve the 3D Earth
+
+Replace or improve the existing Earth rendering.
+
+The Earth should look like a realistic planet viewed from space.
+
+Improve:
+
+- Planetary shape and proportions.
+- Realistic continents and oceans.
+- Cloud formations.
+- Atmospheric glow.
+- Natural sunlight and shadows.
+- Day and night regions.
+- Surface textures.
+- Lighting and depth.
+- Camera movement.
+
+The Earth should have a convincing spherical appearance rather than looking like a flat textured ball.
+
+Use appropriate real Earth imagery or high-quality scientifically grounded textures wherever available.
+
+Avoid cartoon-like colours, unrealistic surface patterns or excessive visual effects.
+
+## 2.2 Correct Earth–Moon size proportions
+
+The current Earth and Moon look almost the same size. This is incorrect.
+
+The Moon's diameter is approximately 27% of Earth's diameter.
+
+Ensure that the visual size relationship reflects this.
+
+For a scientifically accurate scale representation:
+
+- Earth diameter: approximately 12,742 km.
+- Moon diameter: approximately 3,475 km.
+
+The Moon should therefore appear significantly smaller than Earth.
+
+Do not simply make the Moon slightly smaller. The visual difference should be clearly noticeable.
+
+## 2.3 Improve their relative appearance
+
+Show Earth and Moon in a visually convincing space scene.
+
+Ensure:
+
+- Correct relative size.
+- Realistic surface appearance.
+- Appropriate lighting.
+- Natural shadows.
+- Smooth camera transitions.
+- Convincing depth and spatial composition.
+
+If the scene is not intended to be a true distance-scale representation, clearly prioritize correct relative planetary size while keeping the composition visually attractive.
+
+Do not distort the planets to make the scene look dramatic.
+
+## 2.4 Opening cinematic
+
+Preserve the existing opening storyline and narration.
+
+Improve the visual presentation so that the player feels they are beginning an exciting space journey.
+
+Use smooth cinematic camera movements and natural transitions.
+
+The Earth should be introduced first, followed by the Moon.
+
+Ensure that the narration and camera movement remain synchronized.
+
+---
+
+# 3. IMPROVE THE NARRATOR VOICE USING ELEVENLABS
+
+The current voice needs improvement.
+
+The voice should be engaging, expressive and suitable for a children's space exploration game.
+
+The previous requirement for a female narrator with an American accent and a storytelling tone still applies.
+
+## 3.1 Desired voice characteristics
+
+Find a suitable voice using ElevenLabs' available voice samples or voice library.
+
+The voice should be:
+
+- Female.
+- American English accent.
+- Warm and expressive.
+- Pleasant and engaging.
+- Natural rather than robotic.
+- Suitable for children aged 6–11.
+- Clear and easy to understand.
+- Slightly cinematic and narrative in delivery.
+- Consistent across all four phases.
+
+Avoid:
+
+- Overly robotic voices.
+- Flat text-to-speech delivery.
+- Excessively high-pitched cartoon voices.
+- Overly dramatic or theatrical delivery.
+- Inconsistent accents.
+
+The narrator should sound like a friendly storyteller guiding a young astronaut through an adventure.
+
+## 3.2 ElevenLabs voice selection
+
+Investigate available ElevenLabs voices and listen to suitable voice samples before selecting one.
+
+Do not randomly select a voice based only on its name.
+
+Choose a voice that genuinely matches the game's atmosphere.
+
+If possible, compare a few candidate samples using the same short narration passage.
+
+Evaluate:
+
+- Naturalness.
+- Pronunciation.
+- Expressiveness.
+- American accent.
+- Storytelling quality.
+- Suitability for the target age group.
+
+Use one selected voice consistently throughout the application.
+
+## 3.3 Voice consistency
+
+The same voice must be used for:
+
+- Opening introduction.
+- ASTRO's mission guidance.
+- Phase One.
+- Phase Two.
+- Moon Lab.
+- Phase Three Build.
+- Phase Four Survive.
+- Mission completion.
+- Replayable tutorials.
+- Important task explanations.
+
+Do not mix the existing voice with a newly generated voice.
+
+Do not allow different components to independently choose different narrators.
+
+## 3.4 ElevenLabs integration requirements
+
+First inspect how narration is currently implemented.
+
+If ElevenLabs integration is available and supported:
+
+- Use the verified ElevenLabs API or supported integration.
+- Configure the selected voice consistently.
+- Generate or retrieve the narration audio.
+- Handle audio loading and playback correctly.
+- Cache reusable audio where appropriate.
+- Avoid generating the same narration repeatedly.
+- Handle network failures and missing audio assets.
+
+Do not expose ElevenLabs API keys or other secret credentials in frontend code.
+
+Use an appropriate secure backend or supported secret-management mechanism.
+
+Do not invent API endpoints, voice IDs or credentials.
+
+If ElevenLabs cannot be connected directly through the current environment, identify the limitation and provide a practical alternative, such as generating the narration externally and integrating the resulting audio assets.
+
+Do not claim that ElevenLabs is integrated unless the integration has actually been completed and tested.
+
+## 3.5 Preserve the existing audio behaviour
+
+The previous voice-overlay issue has already been addressed, and I am happy that the problematic overlay is gone.
+
+**Do not reintroduce the old voice overlay.**
+
+Keep the current clean interface.
+
+The focus is to improve the actual voice quality, not redesign the overlay.
+
+Preserve the existing replay and captions features.
+
+Ensure:
+
+- No overlapping narration.
+- No duplicate audio playback.
+- No unexpected voice changes.
+- No interrupted sentences during normal transitions.
+- Correct audio behaviour when replaying a scene.
+- Correct audio behaviour when entering a new phase.
+
+---
+
+# 4. CHANGE THE ENTIRE GAME FONT FAMILY
+
+I want to change the font family used throughout the application.
+
+The current font should be replaced with a more space-inspired, futuristic and cosmic-looking font.
+
+The new font should support the game's space exploration theme.
+
+## Requirements
+
+Use a suitable modern font with a futuristic or science-fiction appearance.
+
+However, readability is extremely important because the target audience is children aged 6–11.
+
+The font should be:
+
+- Modern.
+- Space-inspired.
+- Visually distinctive.
+- Clean.
+- Easy to read.
+- Suitable for both headings and interface elements.
+
+Use a consistent typography system across the entire game.
+
+Apply the new typography to:
+
+- Main menu.
+- Opening introduction.
+- Phase headings.
+- Task titles.
+- Buttons.
+- Mission map labels.
+- Resource inventory.
+- Moon Lab.
+- Build Phase.
+- Survive Phase.
+- Quick tips.
+- Captions.
+- Dialogues.
+- Mission completion screen.
+
+Use appropriate font weights and sizes.
+
+If a highly stylized display font is difficult to read in small text, use it for headings and a complementary readable font for body text.
+
+Do not use multiple unrelated fonts throughout the application.
+
+Ensure the selected font loads reliably and has appropriate fallback fonts.
+
+Avoid layout issues caused by changes in text width or height.
+
+After changing the font, test all screens for:
+
+- Text overflow.
+- Cut-off messages.
+- Overlapping buttons.
+- Incorrect alignment.
+- Unreadable small labels.
+
+---
+
+# 5. REMOVE THE PAUSE/PLAY BUTTON FROM THE TOP-RIGHT INTERFACE
+
+The current pause/play button at the top-right of the interface does not appear to perform a useful function.
+
+Remove this button.
+
+Keep the following existing features:
+
+- Replay.
+- Captions.
+
+Do not remove or redesign the replay and captions features unnecessarily.
+
+Verify that both still function correctly after removing the pause/play button.
+
+Ensure that removing the button does not affect the underlying audio playback system or other gameplay controls.
+
+---
+
+# 6. PHASE TWO – ANIMATED MOON LAB PROCESSING
+
+The Moon Lab currently needs more engaging visual feedback during resource processing.
+
+I want children to actually see what happens when raw resources are converted into useful materials.
+
+Do not simply display a progress bar and then change the inventory number.
+
+Create meaningful animations for the processing activities that already exist in the Moon Lab.
+
+## 6.1 Regolith processing example
+
+For example, if raw lunar soil or regolith is processed into a construction-related material such as a regolith wall or building unit, show the transformation visually.
+
+Possible animation sequence:
+
+1. Raw lunar soil is placed into the processing station.
+2. The machine activates.
+3. The material moves through the processing equipment.
+4. The processing mechanism operates.
+5. The material gradually transforms into the intended output.
+6. The finished construction material appears.
+7. The inventory updates.
+
+Use a visually satisfying transformation.
+
+The player should understand that raw material is being processed into something useful.
+
+## 6.2 Other Moon Lab activities
+
+Inspect the existing Moon Lab and identify every resource-processing action that is already implemented.
+
+Create a relevant animation for each activity.
+
+For example, depending on the actual mechanics:
+
+- Raw material entering a processing station.
+- Material being separated or prepared.
+- A sample being examined.
+- A processed resource being transferred.
+- A finished resource being stored.
+
+Do not invent processing activities that do not exist in the current game.
+
+Do not remove existing resource-processing functionality.
+
+## 6.3 Scientific accuracy
+
+Keep the animations educationally appropriate.
+
+If the game uses a simplified or fictional processing process, clearly treat it as a game simulation.
+
+Do not suggest that the exact process is already operational on the Moon.
+
+Maintain the distinction between:
+
+- Real lunar materials.
+- Scientifically established processing principles.
+- Simplified gameplay mechanics.
+
+## 6.4 Audio and feedback
+
+Add appropriate machine sounds and subtle visual effects.
+
+When processing is complete:
+
+- Show the finished material.
+- Update the inventory.
+- Provide a short ASTRO explanation.
+- Show a small completion animation.
+
+The animation should make resource processing feel rewarding.
+
+---
+
+# 7. PHASE THREE – BUILD: ADD A PROPER INTRODUCTION AND INTERACTIVE TUTORIAL
+
+This is one of the most important changes.
+
+Currently, when the player enters Phase Three – BUILD, they are immediately presented with a mini-dashboard containing options such as:
+
+- Crew Habitat.
+- Solar Panels.
+- Other construction modules.
+
+This is overwhelming for a child who has not yet understood what these objects are or why they are needed.
+
+**Do not immediately take the player to the construction dashboard.**
+
+The player must first understand the mission.
+
+## 7.1 Create a cinematic Build Phase introduction
+
+Before displaying the construction dashboard, introduce the Build Phase through a short animated storytelling sequence.
+
+Use the same cinematic visual style as the opening introduction.
+
+The scene should explain:
+
+- The player has explored the Moon.
+- The player has collected useful resources.
+- The next mission is to build a place where astronauts can live and work.
+- A lunar outpost needs several important systems.
+- The player will build these systems one step at a time.
+
+ASTRO should narrate the introduction in the selected female storytelling voice.
+
+Use animated visuals instead of lengthy text.
+
+For example:
+
+Show a lunar landscape.
+
+Then show a dotted outline of a possible habitat.
+
+Show astronauts or suitable visual representations needing a protected place to live and work.
+
+Introduce the idea of solar panels and life-support equipment through visual demonstrations.
+
+The purpose is to create curiosity and help the player understand why construction is necessary.
+
+## 7.2 Generate an animated Build Phase tutorial video
+
+Create a short animated tutorial sequence that teaches the player what they are going to do.
+
+This should feel like a continuation of the game's storytelling introduction, not a separate classroom presentation.
+
+The tutorial should explain the construction process in simple stages.
+
+### Tutorial sequence
+
+**Step 1: Why do we need a habitat?**
+
+Show a habitat appearing on the lunar surface.
+
+Explain that astronauts need a protected place to live and work.
+
+**Step 2: Why do we need solar panels?**
+
+Show sunlight reaching the solar panels.
+
+Animate electricity flowing from the panels towards the outpost.
+
+Explain that solar panels help generate the electricity needed to operate equipment.
+
+**Step 3: Why do we need power support?**
+
+Show how the generated electricity is distributed to important equipment.
+
+Explain that energy can also be stored for later use, depending on the system represented in the game.
+
+**Step 4: Why do we need life-support equipment?**
+
+Show the relevant equipment and explain how it helps maintain conditions needed for human survival.
+
+**Step 5: How do we build the outpost?**
+
+Show a simple overview of the construction process.
+
+Introduce the player to the fact that they will place and connect the modules.
+
+Keep the tutorial short, engaging and visually rich.
+
+## 7.3 Introduce construction modules one at a time
+
+Do not show the entire construction dashboard immediately.
+
+Use progressive disclosure.
+
+For example:
+
+1. Introduce the habitat.
+2. Explain its purpose.
+3. Let the player place it.
+4. Introduce the solar panels.
+5. Explain their purpose.
+6. Let the player place them.
+7. Introduce the power support system.
+8. Explain how it works.
+9. Let the player connect it.
+10. Introduce the remaining necessary modules.
+
+Only reveal the next module when the player is ready to understand it.
+
+Do not overwhelm the player with multiple unfamiliar choices.
+
+## 7.4 Interactive explanations
+
+When introducing a module:
+
+- Show a 3D or animated representation.
+- Highlight its important parts.
+- Display a dotted preview of the unbuilt object.
+- Have ASTRO explain what it does.
+- Show a simple visual demonstration.
+- Let the player interact with it.
+
+For example, when introducing the solar panel, animate sunlight reaching the panel and electricity flowing towards the power system.
+
+Do not rely on written definitions.
+
+## 7.5 Tutorial replay and help
+
+Allow the player to replay the entire Build Phase introduction.
+
+Also allow individual module explanations to be replayed.
+
+If the player is confused, ASTRO should provide hints and animated arrows.
+
+Do not force the player to restart the entire phase.
+
+## 7.6 Transition into the actual Build Phase
+
+Only after the introduction and necessary tutorial steps are complete should the player enter the construction dashboard.
+
+At that point, the dashboard should feel familiar rather than overwhelming.
+
+Preserve the existing construction mechanics, resource inventory, site selection, module placement and equipment connection systems.
+
+Do not replace the existing Build Phase gameplay.
+
+The goal is to teach the player how to use it.
+
+---
+
+# 8. PHASE FOUR – SURVIVE: REBUILD THE LEARNING EXPERIENCE THROUGH STORYTELLING
+
+I am not satisfied with the current presentation of Phase Four.
+
+At the moment, the player is suddenly placed into unexpected situations without sufficiently understanding what they have built, why the systems matter or what could go wrong.
+
+This makes the phase confusing rather than educational.
+
+I want Phase Four to become a proper learning experience through storytelling and visual demonstrations.
+
+**Do not immediately place the player into an emergency scenario.**
+
+First, teach them what survival on the Moon involves.
+
+## 8.1 Create a cinematic Phase Four introduction
+
+When entering Phase Four – SURVIVE, start with a short animated storytelling sequence.
+
+Use the same visual quality and narrative style as:
+
+- The opening game introduction.
+- The new Build Phase introduction.
+
+ASTRO should explain that building the outpost is only one part of the mission.
+
+The player must now understand how to keep the outpost functioning.
+
+The introduction should establish the idea that life on the Moon can involve different challenges.
+
+Explain that astronauts need:
+
+- Electricity.
+- Water.
+- Suitable temperature.
+- Working life-support equipment.
+- Protection from environmental hazards.
+
+Use animations and visual examples to introduce these ideas.
+
+Do not display long text paragraphs.
+
+## 8.2 Teach before presenting emergencies
+
+The most important change:
+
+**Every survival challenge must be introduced and explained before the player is expected to solve it.**
+
+Do not suddenly trigger an emergency without context.
+
+Use a structured storytelling and demonstration sequence for every scenario.
+
+### Scenario 1: Power shortage
+
+Start with a short animated explanation.
+
+Show:
+
+- Solar panels generating electricity.
+- Electricity reaching the power system.
+- Equipment consuming energy.
+- Stored energy being used when necessary.
+
+Then introduce the possible problem.
+
+For example, show that the outpost is using more electricity than is currently available.
+
+ASTRO explains the situation in simple language.
+
+Next, demonstrate what the player needs to do.
+
+Show:
+
+1. The player visiting the power station.
+2. The energy indicator.
+3. Equipment that is consuming power.
+4. How to switch off nonessential equipment.
+5. How the power situation improves.
+
+Only after the demonstration should the player perform the activity.
+
+### Scenario 2: Water shortage
+
+Introduce the water system first.
+
+Show:
+
+- Water storage.
+- The water management or recycling equipment used in the game.
+- Why water is important for astronauts.
+- How the system is monitored.
+
+Then introduce the possible shortage.
+
+ASTRO explains the situation.
+
+Demonstrate the relevant action visually before asking the player to perform it.
+
+### Scenario 3: Life-support malfunction
+
+Introduce the life-support equipment.
+
+Show what it does and why it is important.
+
+Then demonstrate:
+
+1. An equipment warning.
+2. How to inspect the system.
+3. How to identify the affected component.
+4. How to perform the required maintenance.
+5. How to test the system again.
+
+The player should understand what the equipment does before being asked to repair it.
+
+### Scenario 4: Temperature management
+
+Introduce the habitat temperature system.
+
+Show why the lunar environment creates temperature challenges.
+
+Demonstrate how the player can inspect and adjust the habitat's simulated temperature controls.
+
+Then let the player perform the activity.
+
+### Scenario 5: Radiation warning
+
+Introduce the concept of radiation and why astronauts need protection.
+
+Show a simple animated explanation of the hazard and the protected area represented in the game.
+
+Then demonstrate how to guide the astronaut towards the designated protected location.
+
+Do not use frightening imagery.
+
+Keep the explanation appropriate for children.
+
+## 8.3 Storytelling format for every scenario
+
+Use the following structure:
+
+**1. Introduce the concept**
+
+ASTRO tells a short story about the system and why it matters.
+
+**2. Show the equipment**
+
+Display the relevant equipment in an animated visual scene.
+
+**3. Demonstrate the process**
+
+Show what happens when the system works correctly.
+
+**4. Introduce a possible problem**
+
+Show a simple, understandable example of what could go wrong.
+
+**5. Demonstrate the solution**
+
+ASTRO guides the player through the correct response.
+
+**6. Let the player try**
+
+The player performs the actual interactive activity.
+
+**7. Show the result**
+
+Display the outcome and explain what the player accomplished.
+
+This should feel like an interactive educational adventure, not a technical examination.
+
+## 8.4 Use visuals instead of written lessons
+
+Do not simply display explanations in text boxes.
+
+Use:
+
+- Animated equipment.
+- Visual comparisons.
+- Moving diagrams.
+- Highlighted components.
+- Character or rover demonstrations.
+- Animated arrows.
+- ASTRO narration.
+- Short contextual captions.
+
+Keep text minimal.
+
+The child should understand the concept by watching what happens.
+
+## 8.5 Consistency with the Build Phase
+
+The equipment shown during the Survive Phase must correspond to the modules actually constructed in the Build Phase.
+
+Do not introduce equipment that the player never built without explaining its presence.
+
+Use the actual outpost state.
+
+If a module was not constructed, handle that condition logically.
+
+Do not pretend the outpost has systems that do not exist.
+
+## 8.6 Keep the survival gameplay manageable
+
+Retain the important survival activities but introduce them gradually.
+
+Do not overwhelm children with several simultaneous emergencies.
+
+Present one scenario at a time.
+
+Provide clear hints and allow replay of the explanation.
+
+The player should feel prepared rather than surprised or confused.
+
+---
+
+# 9. MISSION COMPLETE – MAKE IT A MEMORABLE ACHIEVEMENT
+
+The current Mission Complete screen needs a stronger emotional and visual finish.
+
+Completing the mission should feel like a genuine accomplishment.
+
+The player has explored the Moon, collected resources, constructed an outpost and helped prepare it for survival.
+
+Celebrate that journey.
+
+## 9.1 Cinematic completion sequence
+
+When the player completes the final mission:
+
+- Transition smoothly into a cinematic scene.
+- Show the completed lunar outpost.
+- Show the rover near the habitat.
+- Show the solar panels and other constructed modules operating.
+- Show the Moon landscape in a beautiful final camera view.
+- Celebrate the successful mission.
+
+Use the actual outpost configuration created by the player.
+
+Do not display modules that were never constructed.
+
+## 9.2 Confetti and celebration effects
+
+Introduce appropriate celebratory graphics.
+
+Possible elements:
+
+- Confetti.
+- Glowing achievement effects.
+- Animated stars.
+- Mission-complete graphics.
+- Badge animations.
+- A celebratory camera movement.
+- Subtle fireworks-style visual effects where appropriate.
+
+Keep the celebration polished and visually attractive.
+
+Do not overwhelm the screen with excessive effects.
+
+## 9.3 Rover appreciation sequence
+
+Include a short, emotionally engaging animated moment in which the rover thanks the player for being a great mission commander.
+
+For example, the rover can turn towards the camera, activate its lights or perform a small celebratory movement.
+
+ASTRO can deliver a warm closing message.
+
+The message should acknowledge the player's contribution:
+
+- Exploring the Moon.
+- Discovering useful information.
+- Collecting resources.
+- Building the outpost.
+- Preparing it for future astronauts.
+
+Use natural, heartfelt narration rather than a generic congratulatory sentence.
+
+## 9.4 Emotional goodbye hook
+
+End the game with a memorable closing moment.
+
+For example, ASTRO could thank the player for being part of the mission and leave them with a sense of wonder about future space exploration.
+
+The closing should make the player feel proud of what they accomplished.
+
+It should also encourage curiosity about what scientists may discover next.
+
+Avoid abruptly ending the game immediately after the last task.
+
+## 9.5 Achievement summary
+
+Show a visually attractive mission summary containing:
+
+- Discoveries made.
+- Resources collected.
+- Outpost modules constructed.
+- Systems successfully tested.
+- Achievements earned.
+
+Use icons, animations and short labels.
+
+Keep the summary easy for children to understand.
+
+---
+
+# 10. TECHNICAL AND IMPLEMENTATION REQUIREMENTS
+
+Implement all changes within the existing application architecture.
+
+Before changing a component, understand how it interacts with the rest of the game.
+
+### Preserve existing features
+
+Do not break:
+
+- Rover controls.
+- Mission map.
+- Live minimap.
+- Resource collection.
+- Inventory.
+- Moon Lab.
+- Site suitability evaluation.
+- Construction.
+- Equipment connections.
+- Survival activities.
+- Tutorial progression.
+- Replay.
+- Captions.
+- Achievements.
+- Mission progression.
+
+### Maintain shared game state
+
+The game must continue to use consistent state across all four phases.
+
+For example:
+
+- Resources collected in Phase Two must be available in Phase Three.
+- Construction modules placed in Phase Three must persist into Phase Four.
+- Equipment connections must remain consistent.
+- The Mission Complete scene must reflect the actual outpost configuration.
+
+### Audio management
+
+Ensure that the new voice assets or ElevenLabs integration do not introduce duplicate playback.
+
+Maintain one consistent narration system.
+
+Do not reintroduce the removed voice overlay.
+
+### Video and animation implementation
+
+For the Build and Survive introductions, use an implementation that is genuinely supported by the existing application.
+
+If a generated video asset is available, integrate it appropriately.
+
+If a true video-generation capability is not available, create a sequence of connected animated scenes using the existing rendering and animation systems.
+
+Do not display a static image and claim it is an animated tutorial video.
+
+Do not introduce videos that cannot be loaded or played reliably.
+
+### Responsive design
+
+Verify that:
+
+- The new font does not break layouts.
+- Narration captions remain readable.
+- Tutorial scenes fit within the screen.
+- Build and Survive introductions work at supported screen sizes.
+- Mission completion graphics do not obscure important information.
+
+---
+
+# 11. IMPLEMENTATION ORDER
+
+Implement and test the refinements in the following order.
+
+**Stage 1 – Cleanup**
+- Remove Presentation Mode completely.
+- Verify normal gameplay progression.
+
+**Stage 2 – Opening cinematic**
+- Improve Earth visuals.
+- Correct Earth–Moon relative size.
+- Improve lighting, textures and camera movement.
+
+**Stage 3 – Narration**
+- Investigate ElevenLabs voice options.
+- Select a suitable female American voice.
+- Integrate it securely where supported.
+- Maintain consistent narration across the game.
+- Preserve the existing clean audio interface.
+
+**Stage 4 – Typography**
+- Select a suitable cosmic-inspired font.
+- Apply it consistently.
+- Fix any resulting layout issues.
+
+**Stage 5 – Interface**
+- Remove the pause/play button.
+- Preserve replay and captions.
+
+**Stage 6 – Moon Lab**
+- Add resource processing animations.
+- Add relevant sounds and visual feedback.
+- Preserve inventory consistency.
+
+**Stage 7 – Build Phase**
+- Add cinematic introduction.
+- Add animated tutorial.
+- Introduce modules progressively.
+- Preserve existing construction mechanics.
+
+**Stage 8 – Survive Phase**
+- Add cinematic introduction.
+- Teach each survival concept before introducing the problem.
+- Add animated demonstrations.
+- Preserve actual interactive survival activities.
+
+**Stage 9 – Mission Complete**
+- Add celebration.
+- Add rover appreciation animation.
+- Add emotional closing narration.
+- Show a summary of actual mission achievements.
+
+**Stage 10 – Full testing**
+- Test the entire game from opening to completion.
+- Check audio consistency.
+- Check all transitions.
+- Check game-state persistence.
+- Check scientific accuracy.
+- Check all animations and interactions.
+
+---
+
+# FINAL EXPECTATION
+
+The goal is to make SPACE PIONEERS feel like a complete cinematic educational adventure.
+
+The opening should look visually realistic.
+
+The narration should sound natural and engaging.
+
+The typography should reinforce the cosmic theme.
+
+The Moon Lab should make resource processing visually understandable.
+
+The Build Phase should introduce construction gradually through storytelling and demonstrations.
+
+The Survive Phase should educate children before asking them to solve problems.
+
+The Mission Complete scene should make players feel proud of their achievements and leave them with a memorable emotional experience.
+
+**Do not simply add more text, buttons or decorative animations. Improve the actual learning and gameplay experience.**
+
+**Preserve the existing application. Modify only what is required. Test every change. Do not introduce regressions or claim that unsupported features have been implemented.**

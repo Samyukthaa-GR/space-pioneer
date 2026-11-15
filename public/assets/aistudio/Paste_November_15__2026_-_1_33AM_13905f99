@@ -1,0 +1,1117 @@
+# SPACE PIONEERS: MISSION BEYOND EARTH
+## Major Game Experience Upgrade — Child Guidance, Cinematic Visuals, Realistic Lunar Simulation and Interactive Rover Navigation
+
+You are working on an existing browser-based 3D educational game called **SPACE PIONEERS: MISSION BEYOND EARTH**.
+
+Your task is to carefully inspect, improve and complete the existing game. Do not blindly rebuild it. Preserve working features, especially the existing camera angles and camera controls, which are already good.
+
+The current game has a serious usability problem: a child can enter the world, see the environment and access activities, but cannot consistently understand what is happening, why an activity matters, or what to do next.
+
+This must be fixed throughout the entire experience.
+
+The game must feel like a professionally designed, cinematic, interactive lunar exploration game—not a 3D environment with disconnected buttons and tasks.
+
+**The most important acceptance criterion: A child aged 7–12 must be able to play independently, understand every task, recover from mistakes and complete the mission without needing an adult to explain it.**
+
+---
+
+# 1. FIRST: AUDIT THE EXISTING GAME
+
+Before changing anything:
+
+1. Inspect the entire existing codebase.
+2. Identify the current framework, components, state management, game loop, scene structure, assets and navigation.
+3. Identify which camera angles and camera transitions already work.
+4. Identify all existing activities, phases, controls and interactions.
+5. Find incomplete features, buttons that do nothing, missing instructions, broken transitions and visual placeholders.
+6. Identify which features are genuinely implemented versus merely represented visually.
+
+Create a short internal implementation checklist before modifying the project.
+
+Do not:
+- Replace working camera controls unnecessarily.
+- Remove working gameplay features.
+- create duplicate game systems.
+- Replace functional 3D interactions with static mockups.
+- Claim a feature is complete when it is only represented by an animation.
+- introduce new menus that make navigation more complicated.
+
+Preserve the existing visual strengths and build the missing experience around them.
+
+# 2. REBUILD THE INTRODUCTION — THE CHILD MUST KNOW WHAT THEY ARE PLAYING
+
+Currently, the game does not sufficiently establish its mission before gameplay begins.
+
+Create a proper cinematic introduction.
+
+## Opening sequence
+
+The game should begin with a full-screen cinematic experience.
+
+**Scene 1 — Earth**
+
+Show Earth from space with realistic lighting, atmosphere and slowly moving clouds.
+
+Display:
+
+"Somewhere beyond our home planet, a new adventure is waiting."
+
+**Scene 2 — The Moon**
+
+The camera travels toward the Moon. Show its curved horizon, craters, rugged surface and realistic lighting.
+
+Display:
+
+"Our next destination is the Moon!"
+
+**Scene 3 — Lunar South Pole**
+
+Zoom toward the lunar South Pole.
+
+Show a realistic view of cratered terrain, illuminated ridges and permanently shadowed regions.
+
+Display:
+
+"Your mission is to explore the Moon's South Pole and build a safe home for future explorers."
+
+**Scene 4 — The mission briefing**
+
+Introduce the four mission stages:
+
+1. EXPLORE — Discover the lunar surface.
+2. COLLECT — Search for useful resources.
+3. BUILD — Design your lunar outpost.
+4. SURVIVE — Protect your outpost from mission challenges.
+
+Explain in simple language:
+
+"You will control a robotic rover, collect resources, build important systems and solve problems. Every decision you make can change what happens later."
+
+**Scene 5 — Meet the rover**
+
+Reveal the player's robotic companion.
+
+The rover should enter the scene through a proper landing/reveal animation, not simply appear.
+
+It should:
+- Move its camera mast.
+- Rotate its wheels slightly.
+- Turn its sensor head toward the player.
+- Display expressive lights or a small animated face-like status display.
+- React when the player names it.
+
+Allow the child to name the rover.
+
+Example:
+
+"Hi, Explorer! I'm your rover buddy. I'll help you explore the Moon. Ready to begin?"
+
+The rover is a companion with personality, not just a controllable vehicle.
+
+## Introduction controls
+
+Provide:
+- Skip introduction.
+- Replay introduction.
+- Mute/unmute.
+- Captions.
+- Play/pause where appropriate.
+
+Do not force the child to watch the introduction every time they reopen a saved game.
+
+---
+
+# 3. ADD A REAL INTERACTIVE TUTORIAL
+
+A cinematic introduction alone is not enough.
+
+After the introduction, the child must complete a guided tutorial before entering the main mission.
+
+The tutorial should teach controls through actions rather than long blocks of text.
+
+Use a friendly guide character or the rover itself.
+
+The guide must explain one action at a time.
+
+## Tutorial sequence
+
+### Tutorial 1 — Look around
+
+Display:
+
+"Welcome, Explorer! Let's look around."
+
+Highlight the camera controls.
+
+Ask the player to:
+- Rotate the camera.
+- Zoom in.
+- Zoom out.
+- Switch to another camera view.
+
+After the player performs the action, confirm:
+
+"Great! You can now explore the Moon from different views."
+
+### Tutorial 2 — Meet your rover
+
+Explain:
+
+"This is your rover. It can travel across the lunar surface, scan rocks and collect samples."
+
+Ask the player to move it a short distance.
+
+Show the movement controls on screen.
+
+Do not advance until the player has successfully performed the action, but provide a skip option.
+
+### Tutorial 3 — Learn the mission map
+
+Explain:
+
+"This map shows where your rover is and where you can explore."
+
+Highlight:
+- Rover position.
+- Destination markers.
+- Dangerous terrain.
+- Explored areas.
+- Available mission objectives.
+
+### Tutorial 4 — Draw a rover route
+
+This is essential and must be fully functional.
+
+Explain:
+
+"Instead of driving every second, you can draw a path for your rover to follow!"
+
+Show a short demonstration of drawing a path and starting rover movement.
+
+Guide the child through drawing a small route and pressing START.
+
+### Tutorial 5 — Scan an object
+
+Highlight a nearby rock.
+
+Explain:
+
+"Scientists use special instruments to learn what rocks are made of. Let's scan this one!"
+
+Ask the player to move close to the rock and activate the scanner.
+
+Display a simple result and explain what the scanner discovered.
+
+### Tutorial completion
+
+Display:
+
+"You're ready, Explorer!"
+
+Show a short mission checklist:
+
+- You learned how to look around.
+- You learned how to move your rover.
+- You learned how to draw a route.
+- You learned how to scan objects.
+
+Give the child a small first achievement.
+
+Do not make the tutorial a separate slideshow. It must teach the actual game controls and systems.
+
+---
+
+# 4. THE MOST IMPORTANT CHANGE: CONTINUOUS TASK EXPLANATIONS
+
+Every activity must explain itself.
+
+Currently, a child may enter another area or access another task without understanding what is happening. This must never happen again.
+
+Implement a **Mission Guidance System** that remains available throughout the entire game.
+
+## A. Task introduction popup
+
+Whenever a new task, activity, objective, hazard or mission phase begins, show an introductory popup.
+
+Each popup must explain:
+
+1. What is happening?
+2. Why are we doing this?
+3. What should the child do?
+4. What will happen after completing it?
+
+Use simple, child-friendly language.
+
+Example:
+
+<NEW TASK: FIND WATER ICE>
+
+"Explorer, scientists believe that some dark lunar craters may contain frozen water."
+
+"Water could help future astronauts drink, grow food and support important mission systems."
+
+"Let's investigate a possible ice location."
+
+YOUR TASK:
+1. Open the scanner.
+2. Look for interesting signals.
+3. Choose a location to investigate.
+4. Send the rover to collect a sample.
+
+[LET'S GO]
+
+The popup must appear when the task starts, not after the child has already become confused.
+
+## B. Persistent objective panel
+
+Keep a small, visible objective panel on the screen throughout gameplay.
+
+Example:
+
+MISSION OBJECTIVE
+
+Find a possible water-ice location.
+
+<Progress indicator>
+
+1. Open scanner
+2. Find a promising location
+3. Choose a sample point
+4. Collect the sample
+
+The panel should:
+- Highlight the current step.
+- Mark completed steps.
+- Explain the next step.
+- Allow the child to reopen the instructions.
+- Never cover the important gameplay area.
+
+## C. Contextual explanations
+
+When the player interacts with something important, explain what happened.
+
+Examples:
+
+When the rover approaches a boulder:
+
+"Careful! This rock is blocking your path. Let's find a safer way around it."
+
+When the rover scans a rock:
+
+"Your rover has detected a different material. Scientists study rocks to understand how the Moon formed."
+
+When the player collects regolith:
+
+"You collected lunar soil-like material called regolith. Engineers study it to learn whether it can help build structures."
+
+When the player reaches a shadowed region:
+
+"This crater receives very little direct sunlight. It is extremely cold, and scientists are interested in studying places like this for possible frozen water."
+
+When the player completes an activity:
+
+"Mission step complete! Your rover has collected a sample. Let's see what we can do with it."
+
+## D. End-of-task explanation
+
+After every activity, show:
+- What the player achieved.
+- What resource or information was gained.
+- Why it matters.
+- What the next activity is.
+
+Example:
+
+"Great work! You collected a regolith sample."
+
+"Regolith is the loose material covering much of the Moon. Engineers are studying how it could help protect lunar habitats."
+
+"Next: Let's find a good place to build our outpost."
+
+[CONTINUE]
+
+## E. Language rules
+
+All instructions must:
+- Use short sentences.
+- Use simple words suitable for ages 7–12.
+- Explain scientific terms immediately.
+- Avoid unexplained technical abbreviations.
+- Avoid large paragraphs.
+- Use illustrations or animations to explain difficult concepts.
+- Avoid excessive reading.
+
+For example:
+
+Do not write:
+"Evaluate the terrain gradient and identify a traversability-compatible navigation corridor."
+
+Write:
+"Look for a path with fewer steep slopes and rocks. Your rover can travel more safely there."
+
+---
+
+# 5. BUILD A REAL MOUSE-DRAWN ROVER PATH SYSTEM
+
+This is a mandatory gameplay feature, not an optional visual effect.
+
+Children must be able to draw a route using their mouse directly on the 3D game environment or a dedicated mission map.
+
+The route must control actual rover movement.
+
+## A. Route drawing interface
+
+Add a clear control:
+
+[DRAW PATH]
+
+When activated:
+- Enter route-planning mode.
+- Show a visible instruction: "Click and drag to draw where your rover should go."
+- Display the route as a glowing line on the lunar surface.
+- Display the starting point at the rover's current position.
+- Display the destination point.
+- Show distance or estimated travel time in child-friendly terms.
+
+Use pointer events so the feature also works with touchscreens.
+
+The route should be projected onto the terrain correctly, not drawn as a flat line floating above or below the lunar surface.
+
+## B. Route validation
+
+Before the rover starts moving, validate the route.
+
+Check:
+- Does the route start at the rover's actual location?
+- Does it end at a valid destination?
+- Does it intersect boulders or other obstacles?
+- Does it cross terrain that exceeds the rover's safe slope limit?
+- Does it enter restricted or hazardous areas?
+- Is the route too long for the available mission energy?
+- Does the route contain impossible or disconnected points?
+
+Do not accept an unsafe route without informing the player.
+
+## C. Explain mistakes clearly
+
+If the child draws a route through a boulder:
+
+"Oops! There's a big rock in the way. Your rover cannot drive through it. Try drawing a path around the rock."
+
+Highlight the blocked section in red.
+
+If the route crosses a steep slope:
+
+"This hill is too steep for your rover. Let's choose a gentler path."
+
+Highlight the dangerous section.
+
+If the route exceeds available energy:
+
+"Your rover may run out of power before reaching the destination. Try a shorter route."
+
+If the route is valid:
+
+"Great! This path looks safe. Your rover is ready to go!"
+
+## D. Route controls
+
+Provide:
+
+- START.
+- PAUSE.
+- RESUME.
+- STOP.
+- CLEAR PATH.
+- REDRAW.
+
+START must initiate actual rover navigation.
+
+The rover must follow the drawn route using a navigation/path-following system.
+
+It must:
+- Rotate its body in the direction of movement.
+- Turn its wheels.
+- Follow the path smoothly.
+- Adjust orientation around corners.
+- React to uneven terrain.
+- Stop at the destination.
+- Report route completion.
+
+Do not animate the rover along a straight line while ignoring the drawn route.
+
+## E. Obstacles during navigation
+
+If the rover approaches an obstacle unexpectedly:
+- Stop safely.
+- Show a warning.
+- Highlight the obstacle.
+- Explain why the route cannot continue.
+- Offer a route correction.
+
+Example:
+
+"Your rover found a rock that blocks the way. Let's draw a new path around it!"
+
+## F. Camera integration
+
+Preserve the existing camera angles.
+
+Add or maintain:
+- Third-person follow camera.
+- Rover-Cam / first-person camera.
+- Top-down mission map.
+- Route-planning camera.
+
+During route execution, the camera should follow the rover smoothly without sudden jumps.
+
+---
+
+# 6. MAKE THE LUNAR ENVIRONMENT LOOK MUCH MORE REALISTIC
+
+The current animations are too simple.
+
+Improve the visual quality significantly while retaining a child-friendly presentation.
+
+The Moon itself should look scientifically realistic, while the HUD, mission markers, guide character and rewards can remain colourful.
+
+## A. Lunar terrain
+
+Improve:
+- Crater shapes and depth.
+- Rocky surface details.
+- Regolith texture.
+- Small rocks and boulders.
+- Terrain elevation.
+- Surface roughness.
+- Long shadows.
+- Distant cratered horizon.
+- Large and small geological formations.
+
+Avoid repeating the same few rock models across the entire environment.
+
+Use procedural terrain variation and appropriate LODs.
+
+Where possible, use genuine lunar elevation and imagery products, with proper geographic registration and source attribution.
+
+Do not claim that procedural terrain is NASA terrain.
+
+## B. Lighting
+
+Lunar lighting should be physically convincing.
+
+Implement:
+- Strong sunlight.
+- Very dark shadows.
+- Sharp shadow boundaries.
+- Realistic sunlight direction.
+- Surface illumination changes.
+- Bright highlights on exposed terrain.
+- Dark permanently shadowed areas.
+- Subtle Earth visibility when appropriate.
+
+Do not make the Moon look like a blue or green Earth landscape.
+
+Do not add a blue atmospheric sky. The Moon has essentially no atmosphere to scatter sunlight like Earth's sky.
+
+## C. Camera and cinematic movement
+
+Improve camera motion with:
+- Smooth cinematic zooms.
+- Controlled camera transitions.
+- Subtle camera shake during impacts.
+- Terrain-following movement.
+- Natural camera easing.
+- Close-up inspection of interesting objects.
+- Cinematic transitions between mission stages.
+
+Keep camera controls responsive.
+
+Do not make the player feel trapped inside an unskippable cinematic.
+
+## D. Realistic rover animation
+
+The rover should have proper animation states.
+
+Implement:
+- Idle.
+- Driving.
+- Turning.
+- Braking.
+- Climbing.
+- Descending.
+- Scanning.
+- Drilling.
+- Collecting.
+- Obstacle detection.
+- Damage or malfunction.
+- Low-power state.
+- Charging.
+- Victory/reaction.
+
+The wheel animation must match rover speed.
+
+The suspension should react to uneven terrain.
+
+The rover body should tilt subtly when climbing or moving over obstacles.
+
+Its camera mast and sensors should move when scanning.
+
+Its companion personality should appear through expressive lights, movements and reactions.
+
+## E. Lunar dust effects
+
+The Moon does not have ordinary wind-driven dust storms.
+
+Instead, implement realistic dust effects associated with rover movement and surface disturbance.
+
+Examples:
+- Small regolith particles kicked up by wheels.
+- Dust particles settling back onto the surface.
+- Fine dust briefly crossing the rover's camera view during close surface operations.
+- Dust accumulation on camera lenses or solar panels as a simulated maintenance challenge.
+- Dust obscuring a camera image when the rover operates too close to loose material.
+
+Make these effects visible but scientifically appropriate.
+
+Do not show large Earth-like clouds of blowing sand.
+
+## F. Real-time visual consequences
+
+Animations must respond to actual gameplay state.
+
+Examples:
+
+- If the rover hits a rock, show the impact and a corresponding rover condition change.
+- If the rover drives through loose regolith, show wheel-kicked dust.
+- If its camera becomes dusty, show a gradual reduction in image clarity and a maintenance warning.
+- If a solar panel is covered in dust, show a measurable reduction in simulated power generation.
+- If the rover enters a dark crater, show the actual lighting transition and reduced visibility.
+- If the rover approaches a steep slope, show the terrain and navigation warning.
+
+Every visual effect must have a reason.
+
+Do not use random animations that have no relationship to what the player is doing.
+
+---
+
+# 7. MAKE THE GAME'S FOUR PHASES UNDERSTANDABLE
+
+Keep the four agreed phases:
+
+1. Explore.
+2. Collect Resources.
+3. Engineer and Build.
+4. Test and Survive.
+
+Each phase must have:
+- A cinematic introduction.
+- A simple explanation.
+- A clear objective.
+- A guided first activity.
+- Step-by-step tasks.
+- A visible progress indicator.
+- Completion feedback.
+- A transition to the next phase.
+
+## PHASE 1 — EXPLORE
+
+Introduction:
+
+"Before building a home on the Moon, we must understand the place where we want to live."
+
+Activities:
+
+1. Explore the lunar terrain.
+2. Draw a route.
+3. Avoid boulders and steep slopes.
+4. Scan interesting rocks.
+5. Investigate a shadowed crater.
+6. Discover a suitable outpost location.
+
+Each activity must explain what the child is doing and why.
+
+At the end:
+
+"You explored the lunar surface and discovered places that could help us build our outpost!"
+
+Show the exploration map and discoveries.
+
+## PHASE 2 — COLLECT RESOURCES
+
+Introduction:
+
+"Our future explorers will need useful materials. Let's investigate what the Moon might provide."
+
+Activities:
+
+1. Investigate possible water-ice locations.
+2. Collect a sample.
+3. Collect regolith.
+4. Investigate sunlight and solar energy.
+5. Review collected resources.
+
+Do not make the child believe that a scanner has definitively discovered accessible water ice merely because it detected a hydrogen-related signal.
+
+Explain:
+
+"Scientists have found clues that water may exist in some shadowed places. We need more investigation to know exactly where it is and how much can be collected."
+
+After collecting resources, show an inventory and explain what each resource can help us do.
+
+## PHASE 3 — ENGINEER AND BUILD
+
+Introduction:
+
+"Now that we have explored and collected useful materials, it's time to design our lunar home!"
+
+Make the construction experience intuitive.
+
+For every structure:
+- Explain what it does.
+- Show its resource cost.
+- Show where it can be placed.
+- Explain why location matters.
+- Preview its effect before placement.
+- Explain how it connects to other systems.
+
+Structures should include:
+- Habitat.
+- Solar panels.
+- Battery storage.
+- Water storage and recovery.
+- Air revitalisation and CO₂ removal.
+- Oxygen supply or generation.
+- Regolith shielding.
+- Food-growing experiment.
+- Infrastructure connections.
+
+Do not combine every life-support function into one imaginary machine.
+
+When a child places a structure, show a clear animation and an explanation.
+
+Example:
+
+"Your solar panels are ready! They turn sunlight into electricity. This electricity helps power your habitat and rover."
+
+Make the building experience genuinely interactive, with placement, rotation, movement, connection and removal.
+
+## PHASE 4 — TEST AND SURVIVE
+
+Introduction:
+
+"Your lunar home is ready. But living on the Moon is not easy. Can you keep your outpost safe?"
+
+Introduce challenges one at a time.
+
+### Challenge 1 — Low sunlight
+
+Explain:
+
+"Your solar panels are receiving less sunlight. Your batteries are important now. Choose which systems need power first."
+
+Show the consequences of the player's choices.
+
+### Challenge 2 — Solar particle event
+
+Explain:
+
+"The Sun has released energetic particles. Astronauts need protection during certain space-weather events."
+
+Allow the player to check an alert, protect the crew and follow the mission shelter procedure.
+
+Clearly distinguish a real solar event alert from a simulated local radiation exposure.
+
+### Challenge 3 — Infrastructure damage
+
+Show a visible impact or simulated damage event.
+
+Explain what was damaged and let the player repair it.
+
+A damaged electrical cable must not be treated as a habitat pressure leak.
+
+### Challenge 4 — Life-support problem
+
+Introduce a problem with water recovery, air revitalisation or oxygen supply.
+
+Show the actual system that needs attention.
+
+Explain the fix step by step.
+
+The child should understand the cause and consequence of every challenge.
+
+---
+
+# 8. MAKE THE BUTTERFLY EFFECT VISIBLE
+
+The child's earlier decisions must influence later gameplay.
+
+Do not merely display a message saying that a choice matters.
+
+Show the consequences.
+
+Examples:
+
+- If the child chooses a difficult exploration route, the rover may collect more dust and need maintenance.
+- If the child collects fewer resources, some construction choices become unavailable or require conservation.
+- If the child chooses a shadowed location, solar power planning becomes more difficult.
+- If the child chooses a poorly protected cable route, repairs may be needed during a later challenge.
+- If the child installs adequate shielding, the outpost becomes better prepared for a radiation-related challenge.
+
+Every consequence must be explained.
+
+Example:
+
+"Remember the path you chose earlier? Your rover collected extra dust on that journey. Let's clean its camera before our next exploration!"
+
+Provide recovery options. Never permanently trap a child because of one early mistake.
+
+---
+
+# 9. CREATE A CONSISTENT VISUAL LANGUAGE FOR TASKS
+
+Every important game event must have a recognizable presentation.
+
+Use different visual treatments for:
+
+- New mission.
+- New task.
+- Warning.
+- Discovery.
+- Completed objective.
+- Resource gained.
+- System failure.
+- Next step.
+- Scientific fact.
+
+Examples:
+
+NEW TASK:
+A cinematic but compact panel slides into view.
+
+WARNING:
+A visible amber warning with a short explanation.
+
+DANGER:
+A clear red warning with the cause and a recovery action.
+
+DISCOVERY:
+A close-up animation, object highlight and short scientific explanation.
+
+TASK COMPLETE:
+A satisfying visual confirmation and a clear next-step button.
+
+Do not use colour alone to communicate meaning. Include icons and text.
+
+Provide a consistent location for the mission guide and the current objective.
+
+---
+
+# 10. INTRODUCE SCIENCE THROUGH VISUAL EXPLANATIONS
+
+Scientific facts should be shown when they are relevant to the activity.
+
+Do not interrupt gameplay with unrelated paragraphs.
+
+Examples:
+
+When exploring a crater:
+Show a small comparison explaining how sunlight reaches an illuminated ridge but not the bottom of a permanently shadowed crater.
+
+When scanning a rock:
+Show the scanner and explain what it measures.
+
+When collecting regolith:
+Show a close-up of lunar surface material.
+
+When building solar panels:
+Show how sunlight is converted into electrical power.
+
+When installing shielding:
+Show a simple cutaway explaining how shielding helps reduce radiation exposure.
+
+Use short explanations, simple diagrams, animated cutaways and optional deeper science cards.
+
+Include a Science Journal where children can revisit discoveries.
+
+---
+
+# 11. VISUAL REFERENCE — WHAT TO TAKE FROM A SOLAR TALE
+
+Reference:
+https://a-solar-tale.netlify.app/
+
+Use this reference only for its visual presentation and animation quality.
+
+**Do not reuse its storyline, characters, narrator, text, branding or narrative structure.**
+
+Do not make the Sun the narrator.
+
+Do not create a scrolling story in place of the game.
+
+The intended visual qualities are:
+
+- Beautiful cinematic scene transitions.
+- High-quality illustrated presentation.
+- Vibrant but controlled colour palettes.
+- Smooth animated visual elements.
+- Strong visual composition.
+- Attractive typography.
+- Carefully timed reveals.
+- Visual explanations that make science easy to understand.
+- A polished experience that feels designed rather than assembled from generic UI components.
+
+Apply these qualities to:
+- The opening cinematic.
+- Mission introductions.
+- Phase transitions.
+- Scientific explanations.
+- Discovery moments.
+- Rover interactions.
+- Mission-completion sequences.
+
+Keep the actual lunar world realistic.
+
+The interface can be colourful; the Moon should not become a fantasy environment.
+
+---
+
+# 12. AUDIO, CAPTIONS AND CHILD-FRIENDLY ACCESSIBILITY
+
+Provide optional voiceover for:
+- Introduction.
+- Tutorial.
+- Task introductions.
+- Important warnings.
+- Scientific explanations.
+- Phase completion.
+
+Every voiceover must have matching captions.
+
+Provide:
+- Mute/unmute.
+- Volume controls.
+- Replay narration.
+- Skip narration.
+- Readable subtitles.
+- Reduced-motion option.
+- Keyboard and touch alternatives.
+- Large enough controls for children.
+
+Voice must never be the only way to understand a task.
+
+Do not use loud or frightening sounds for hazards.
+
+---
+
+# 13. THE GAME MUST NEVER LEAVE THE CHILD CONFUSED
+
+Implement a persistent guidance mechanism.
+
+At any point, the child must be able to answer:
+
+1. Where am I?
+2. What am I doing?
+3. Why am I doing it?
+4. What do I do next?
+5. What happens if I make a mistake?
+
+Include:
+- Current phase.
+- Current objective.
+- Current task.
+- Task progress.
+- Next action.
+- Help/replay button.
+- Mission map.
+- Rover status.
+
+If the child is idle or appears stuck, provide a gentle optional hint.
+
+Do not automatically move the rover or complete the task for the child.
+
+Example:
+
+"Need a hint? Try looking at the highlighted rock near your rover."
+
+Avoid repeatedly interrupting a child who is already making progress.
+
+---
+
+# 14. TECHNICAL IMPLEMENTATION REQUIREMENTS
+
+Work with the existing stack wherever possible.
+
+If the current project uses React, retain React. If it uses Three.js or React Three Fiber, build upon the existing scene and rendering architecture.
+
+Use appropriate systems for:
+- Pointer-based route drawing.
+- Terrain raycasting.
+- Route projection.
+- Collision detection.
+- Terrain-aware movement.
+- Path validation.
+- Rover navigation.
+- Animation state management.
+- Mission state persistence.
+- Task progression.
+- Contextual guidance.
+- Save/resume.
+
+Keep game logic separate from UI presentation.
+
+Use a single reliable mission state so that:
+- The task panel.
+- The mission map.
+- Rover behaviour.
+- Resource inventory.
+- Animation states.
+- Task completion.
+- Butterfly effects.
+
+All respond to the same actual game state.
+
+Avoid hardcoded UI that claims a task is completed without checking the underlying gameplay state.
+
+# 15. SCIENTIFIC ACCURACY
+
+The game is educational, so visual realism must not come at the cost of scientific accuracy.
+
+Follow these rules:
+
+- Do not depict ordinary atmospheric wind or Earth-like sandstorms on the Moon.
+- Do not show a blue atmospheric lunar sky.
+- Do not treat hydrogen detection as confirmed accessible water ice.
+- Do not apply one fixed lunar temperature or darkness duration to every South Pole location.
+- Do not imply that a solar particle event directly measures radiation dose at the outpost.
+- Distinguish archived NASA observations from live data and simulated gameplay.
+- Explain that rover dust effects are local surface disturbance, not wind-driven storms.
+- Distinguish real terrain data from procedural or simulated terrain.
+- Do not invent NASA measurements.
+
+Whenever NASA data is used, identify its source, observation date, coverage and whether it is observed, derived or simulated.
+
+# 16. REQUIRED DEVELOPMENT ORDER
+
+Do not attempt to implement all upgrades in one untested pass.
+
+Follow this sequence.
+
+**Stage 1 — Existing project audit**
+- Inspect code and existing gameplay.
+- Preserve good camera controls.
+- Identify broken and missing features.
+
+**Stage 2 — Introduction and tutorial**
+- Build the cinematic introduction.
+- Add rover naming.
+- Implement the interactive tutorial.
+- Test every tutorial action.
+
+**Stage 3 — Mission Guidance System**
+- Add task popups.
+- Add persistent objectives.
+- Add contextual hints.
+- Add task-completion explanations.
+- Verify every phase has guidance.
+
+**Stage 4 — Rover path drawing**
+- Implement pointer-based route drawing.
+- Project routes onto terrain.
+- Validate obstacles and slopes.
+- Implement actual path-following.
+- Test route correction and pause/resume.
+
+**Stage 5 — Visual and animation upgrade**
+- Improve terrain and lighting.
+- Improve rover animations.
+- Add dust, impact and camera effects.
+- Make visual effects respond to game state.
+
+**Stage 6 — Four-phase integration**
+- Connect exploration, resource collection, construction and survival.
+- Verify persistent resources and butterfly effects.
+- Verify every new task introduces itself.
+
+**Stage 7 — Final quality assurance**
+- Test the entire game from a fresh start.
+- Test saved-game resume.
+- Test failed and corrected routes.
+- Test mouse and touch.
+- Test audio off and reduced motion.
+- Test missing NASA data and network failure.
+- Test that every button works.
+
+Do not proceed to the next stage while critical functionality in the current stage is broken.
+
+---
+
+# 17. MANDATORY END-TO-END CHILD PLAYTEST
+
+Pretend you are a child who has never seen this game.
+
+Start from the first screen.
+
+Do not use developer knowledge to navigate.
+
+Verify:
+
+1. Can the child understand what the game is about?
+2. Does the opening explain the mission?
+3. Does the tutorial teach the camera?
+4. Does the tutorial teach rover movement?
+5. Can the child draw a route using the mouse?
+6. Does the rover actually follow the route?
+7. Does the game explain why an unsafe route is rejected?
+8. Does every new activity introduce itself?
+9. Does every task explain what to do?
+10. Does every completed task explain what happened?
+11. Can the child understand why resources are being collected?
+12. Can the child understand why structures are being built?
+13. Can the child understand what each hazard means?
+14. Do earlier decisions change later gameplay?
+15. Can the child recover from mistakes?
+16. Can the child finish the mission without outside help?
+
+Test at least these situations:
+
+- A route that avoids all obstacles.
+- A route drawn directly through a boulder.
+- A route crossing a steep slope.
+- A route that exceeds available energy.
+- A rover that becomes dusty.
+- A rover that reaches its destination.
+- A player who pauses and resumes navigation.
+- A player who leaves a task and returns.
+- A player who saves and resumes the game.
+
+If the game cannot explain an activity to a child in simple words, that activity is not finished.
+
+# 18. FINAL DELIVERABLE
+
+Do not return only a list of improvements or a design proposal.
+
+Implement the improvements in the existing project.
+
+At completion, provide:
+
+1. What was already working and preserved.
+2. What was newly implemented.
+3. How the introduction works.
+4. How the tutorial works.
+5. How the mission guidance system works.
+6. How mouse-drawn rover navigation works.
+7. What new realistic animations were added.
+8. How each of the four phases is explained.
+9. What was tested successfully.
+10. What remains incomplete or simulated.
+
+Be honest about anything that could not be implemented or verified.
+
+**FINAL QUALITY STANDARD**
+
+The finished game must feel like a real lunar exploration adventure that a child can understand and operate independently.
+
+The child should not be staring at a beautiful Moon wondering what to do.
+
+The child should feel like a real Junior Space Explorer, with a rover companion, a clear mission, meaningful discoveries, visible consequences and an exciting next step at every stage.

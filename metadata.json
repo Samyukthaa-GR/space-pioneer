@@ -1,0 +1,8 @@
+{
+  "name": "Space Pioneers: Mission Beyond Earth",
+  "description": "An interactive 3D educational lunar South Pole exploration game where young explorers guide a robotic rover, draw navigation paths, collect resources, build a lunar outpost, and overcome space survival challenges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

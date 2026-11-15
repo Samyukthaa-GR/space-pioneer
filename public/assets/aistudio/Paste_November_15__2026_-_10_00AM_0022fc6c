@@ -1,0 +1,921 @@
+# SPACE PIONEERS – MASTER REFINEMENT PROMPT (ROUND 2)
+## Improve Storytelling, NASA Integration, Maps, Tutorials, Animations and Gameplay
+
+I have an existing, published application called **SPACE PIONEERS: Mission Beyond Earth**, an educational Moon exploration game for children aged 6–11.
+
+I want you to refine and improve the existing application based on the requirements below.
+
+**IMPORTANT: DO NOT CREATE A NEW APPLICATION. DO NOT REBUILD THE GAME FROM SCRATCH.**
+
+First inspect the existing codebase, components, architecture, assets, state management and implemented features. Understand how the current application works before making changes.
+
+Preserve all existing functional features, gameplay progress, storyline, visual elements and interactions that are already working well.
+
+The goal is to improve the existing experience, not replace it with a different game.
+
+The game should become more immersive, realistic, entertaining, visually impressive and easier for children to understand.
+
+---
+
+# 1. VOICE AND STORYTELLING – HIGH PRIORITY
+
+The current narration needs significant improvement.
+
+### 1.1 Change the narrator's voice
+
+Use a **female voice with a deeper, richer and warmer tone**, suitable for cinematic storytelling.
+
+The voice should feel like a narrator telling an exciting space adventure story.
+
+Desired qualities:
+
+- Deep and pleasant female voice.
+- Warm and expressive.
+- Calm but engaging.
+- Natural pacing.
+- Clear pronunciation.
+- Emotionally engaging.
+- Suitable for children aged 6–11.
+- Not robotic, mechanical or overly energetic.
+
+Avoid the typical high-pitched cartoon assistant voice.
+
+ASTRO should sound like a friendly, experienced mission companion who guides the player through an exciting story.
+
+### 1.2 Make all narration storytelling-oriented
+
+Every phase should feel like a continuation of the same adventure.
+
+Instead of saying:
+
+"Collect the soil sample. Go to the next location."
+
+Use a narrative approach:
+
+"Look at that patch of lunar soil! Scientists are curious about what it can tell us. Let's move closer and collect a little sample for our research."
+
+The narration should:
+
+- Explain what is happening.
+- Explain why it matters.
+- Introduce the next action naturally.
+- Encourage curiosity.
+- Connect activities to the larger mission.
+
+Avoid repeatedly using the same introductory phrases.
+
+Do not make every instruction sound like a robotic command.
+
+### 1.3 Narration in every phase
+
+Every phase must include appropriate voice guidance.
+
+This includes:
+
+- Exploration.
+- Resource collection.
+- Resource processing.
+- Construction.
+- Power management.
+- Survival testing.
+- Emergencies.
+- Mission completion.
+
+The voice should explain what to do when a new activity begins and provide feedback when the player performs an action.
+
+Do not narrate every minor movement unnecessarily.
+
+Use narration at meaningful moments.
+
+### 1.4 Voiceover playback behaviour
+
+Fix the existing narration playback issues.
+
+- Never repeat a voiceover because of a component rerender.
+- Do not interrupt an unfinished sentence during scene transitions.
+- Do not start multiple audio instances for the same narration.
+- Allow players to replay important explanations.
+- Synchronize narration with animations.
+- Ensure pause and resume work correctly.
+- Provide appropriate fallback behaviour if audio fails to load.
+
+If the platform's existing voice system cannot generate the requested voice directly, use a supported voice-generation or audio asset approach. Do not pretend that an unavailable voice capability has been implemented.
+
+---
+
+# 2. IMPROVE MAP VISUALS AND USE REAL LUNAR MAPS
+
+The existing real reference images shown beside the map are good and should be retained.
+
+However, the map itself needs significant improvement.
+
+### 2.1 Replace the simplistic map appearance
+
+Do not represent lunar locations only through circles, dots or generic markers.
+
+The map should visually resemble an actual lunar surface map.
+
+Use real lunar mapping data or verified lunar imagery wherever possible.
+
+Explore suitable official NASA sources, including Lunar Reconnaissance Orbiter mapping and imagery resources.
+
+The map should show meaningful lunar surface features such as:
+
+- Craters.
+- Surface boundaries.
+- Elevation or terrain variations where supported by the data.
+- Ridges.
+- Shadowed regions where suitable data is available.
+- The rover's current location.
+- Exploration destinations.
+
+Use an appropriate map visualization technique supported by the existing application.
+
+### 2.2 Improve map animations
+
+Make map interactions visually interesting.
+
+When a player moves the rover:
+
+- Animate the rover's position.
+- Show its movement across the map.
+- Update its location continuously.
+- Show the travelled path.
+- Highlight relevant destinations.
+- Display mission progress.
+
+When a destination is selected:
+
+- Highlight the selected area.
+- Show a clear route or direction.
+- Animate the route being drawn.
+- Display relevant location information.
+
+Avoid static circles that provide little information.
+
+### 2.3 Real-time map synchronization
+
+This is especially important.
+
+**Every movement performed in the game must automatically appear on the live map.**
+
+The player should not have to open the map, click refresh or manually update anything.
+
+For example:
+
+- When the rover moves forward, its map position changes.
+- When it turns, its orientation updates.
+- When it follows an autopilot route, its progress appears on the map.
+- When it reaches a destination, the map reflects the new location.
+- When the rover explores an area, the travelled path is displayed.
+
+Use one shared location and movement state for the game environment and the map.
+
+The map must not display a different position from the actual rover.
+
+### 2.4 Keep NASA reference images beside the map
+
+Retain the side reference panel that displays real lunar images.
+
+Improve the connection between the map and these references.
+
+When a player selects a crater or location, show:
+
+- A relevant real NASA image.
+- The feature or location name.
+- A simple explanation.
+- One interesting fact.
+- The source and attribution.
+
+When the selected game location is fictional, clearly label it as a simulated location and show a relevant real lunar reference separately.
+
+Never imply that a reference image depicts the exact fictional game location.
+
+---
+
+# 3. REAL NASA IMAGES WHENEVER AN OBJECT IS INVESTIGATED
+
+This is a major requirement.
+
+**Whenever a player clicks, scans or investigates an important object in the game, display a relevant real reference image from NASA in the side information panel.**
+
+Examples:
+
+- Clicking a crater should display a relevant NASA crater image.
+- Scanning a boulder should display an appropriate lunar rock or surface reference.
+- Investigating a shadowed crater should display a relevant NASA reference image of a permanently shadowed region.
+- Investigating soil should display relevant lunar regolith imagery.
+- Selecting a rover component should show a real reference image of the relevant technology where available.
+- Selecting a solar panel should show an appropriate real space solar panel reference.
+- Investigating an outpost module should display a relevant real space habitat or equipment reference.
+
+### Side information panel
+
+The panel should include:
+
+1. Real reference image.
+2. Object name.
+3. Short child-friendly explanation.
+4. One fascinating fact.
+5. NASA source attribution.
+6. Optional link to the original NASA page.
+
+The reference panel should update according to the selected object.
+
+Do not show the same generic image for every object.
+
+### Accuracy requirement
+
+Use an actual NASA image or a verified NASA-hosted asset.
+
+Do not:
+
+- Generate an AI image and label it NASA.
+- Use an unrelated NASA image simply because it looks similar.
+- Invent image descriptions.
+- Invent NASA source links.
+- Claim an image represents a particular location when it does not.
+
+If a suitable image is unavailable, display a clearly labelled educational illustration or explain that a verified reference image is unavailable.
+
+---
+
+# 4. REAL NASA DATASETS AND SCIENTIFIC ACCURACY – CRITICAL
+
+This requirement is non-negotiable.
+
+I want real NASA datasets and scientific imagery integrated wherever they genuinely improve the experience.
+
+Do not simply decorate the application with NASA logos or images.
+
+Use real scientific information wherever it is relevant to the game.
+
+### Potential data sources
+
+Investigate suitable official resources such as:
+
+- NASA Lunar Reconnaissance Orbiter (LRO).
+- NASA lunar surface imagery.
+- NASA lunar elevation and terrain data.
+- NASA lunar mapping products.
+- NASA planetary data resources.
+- NASA educational and scientific resources.
+- Other relevant official NASA datasets.
+
+Only use a dataset after verifying that it actually contains the required information.
+
+### Data integration requirements
+
+For every dataset or external image source:
+
+- Verify the official source.
+- Verify the dataset or image exists.
+- Verify the actual data fields.
+- Verify the spatial or geographic coverage.
+- Verify the units.
+- Verify the date or observation period where relevant.
+- Preserve the correct attribution.
+- Record the source URL.
+- Handle unavailable data.
+- Do not fabricate missing values.
+
+### Distinguish real data from simulation
+
+The application may contain simulated gameplay elements.
+
+For example:
+
+- Rover movement may be simulated.
+- Resource quantities may be game-defined.
+- Construction costs may be simplified.
+- Power generation may be a game simulation.
+- Survival emergencies may be fictional mission events.
+
+These are acceptable as game mechanics, but they must not be presented as actual NASA measurements.
+
+Clearly distinguish:
+
+1. Real NASA reference data.
+2. Real NASA imagery.
+3. Game-generated values.
+4. Simulated mission events.
+5. Educational illustrations.
+
+Never invent a dataset and claim it came from NASA.
+
+Never fabricate NASA API endpoints or pretend that an external integration works without testing it.
+
+If a live NASA integration is not feasible, use verified NASA data and assets that can be stored locally, with clear source attribution.
+
+---
+
+# 5. IMPROVE THE TUTORIAL SYSTEM
+
+Every phase must have a detailed, dedicated tutorial.
+
+The current tutorial should be expanded to provide much clearer guidance.
+
+Do not assume that a child who understands rover movement will automatically understand resource processing or construction.
+
+Each phase introduces new mechanics and therefore needs its own tutorial.
+
+### 5.1 Phase-specific tutorials
+
+Create separate tutorials for:
+
+**Phase One – Explore and Discover**
+- Rover controls.
+- Mission map.
+- Selecting destinations.
+- Scanning objects.
+- Investigating craters.
+- Drilling.
+- Collecting samples.
+- Understanding the discovery journal.
+
+**Phase Two – Collect and Process Resources**
+- Finding resource locations.
+- Collecting lunar soil.
+- Using the scoop.
+- Operating the drill.
+- Investigating water ice.
+- Processing resources.
+- Managing inventory.
+- Adjusting solar panels.
+
+**Phase Three – Build the Lunar Outpost**
+- Selecting a construction site.
+- Understanding site suitability.
+- Selecting modules.
+- Understanding resource requirements.
+- Placing modules.
+- Connecting equipment.
+- Understanding power support.
+
+**Phase Four – Test and Survive**
+- Understanding the power system.
+- Inspecting equipment.
+- Responding to power shortages.
+- Managing water.
+- Maintaining life-support equipment.
+- Managing temperature.
+- Responding to radiation warnings.
+
+### 5.2 Visual arrow guidance
+
+When the player is stuck or does not understand what to do, display visual arrow marks.
+
+Examples:
+
+- An arrow pointing towards the rover control.
+- An arrow pointing towards the map.
+- An arrow pointing towards the object to scan.
+- An arrow pointing towards the drill.
+- An arrow pointing towards the resource container.
+- An arrow pointing towards the construction module.
+- An arrow pointing towards the power support equipment.
+
+The arrow should be animated subtly to attract attention.
+
+Highlight the relevant object or control.
+
+Do not display arrows continuously when they are not needed.
+
+### 5.3 Progressive help
+
+If the player does not perform an action after a reasonable period:
+
+1. ASTRO provides a small verbal hint.
+2. The relevant object is highlighted.
+3. An arrow appears.
+4. A short visual demonstration is available.
+5. A detailed step-by-step explanation can be replayed.
+
+The player should be able to request help at any time.
+
+Never leave a child stuck.
+
+Do not force the player to restart the entire tutorial.
+
+### 5.4 Tutorial completion
+
+Fix the existing tutorial checklist behaviour.
+
+In particular, the checkboxes in **"Draw an Auto-Pilot Path"** are not being ticked correctly after a task is completed.
+
+Inspect the actual completion logic and fix the underlying issue.
+
+Requirements:
+
+- A checkbox should become checked only when its associated activity is genuinely completed.
+- Completion should be detected from the actual game state.
+- A completed task should remain checked after a rerender.
+- A task should not be marked complete simply because the player opened its screen.
+- The checklist should update immediately after the player finishes the action.
+
+Test every tutorial checklist, not just the Auto-Pilot Path checklist.
+
+Ensure that the tutorial and gameplay use consistent state.
+
+---
+
+# 6. MAKE SCANNING MORE ENTERTAINING
+
+The current scanning interaction should become more engaging.
+
+Do not make scanning an instant click followed by a static information panel.
+
+### New scanning interaction
+
+When the player approaches an object:
+
+1. ASTRO introduces the object.
+2. The player selects the scan option.
+3. A scanning interface appears.
+4. The player presses and holds the scan control for a short period.
+5. An animated scanning effect appears.
+6. A progress indicator fills.
+7. The scanner produces an appropriate sound.
+8. The scan completes.
+9. The real NASA reference image appears in the side panel, where a relevant image exists.
+10. ASTRO explains the discovery.
+
+### Scanning animation
+
+Use appropriate visual effects, such as:
+
+- A scanning beam.
+- A moving light.
+- A circular scanning animation.
+- A progress indicator.
+- Subtle object highlighting.
+- A discovery animation when scanning is complete.
+
+Make the interaction satisfying and memorable.
+
+### Hold interaction
+
+The player should need to hold the scan control for a short, child-friendly duration.
+
+Provide clear visual feedback while holding.
+
+If the player releases too early, the scan should pause or reset in an understandable way.
+
+Do not make the interaction frustrating.
+
+---
+
+# 7. MAKE DRILLING A HOLD-TO-ACTIVATE INTERACTION
+
+Improve the drilling experience.
+
+Instead of a single click that immediately completes drilling, introduce a hold interaction.
+
+### Drilling sequence
+
+1. The player positions the rover correctly.
+2. The player selects the drill.
+3. A visual indicator shows where drilling will happen.
+4. The player presses and holds the drill control.
+5. The drill begins operating.
+6. The drill visibly penetrates the lunar surface.
+7. Dust or suitable visual effects appear.
+8. A drilling sound plays.
+9. A progress indicator shows the activity.
+10. The player retrieves the sample.
+11. The sample is transferred to the inventory.
+
+### Audio
+
+Include an appropriate drilling sound.
+
+The sound should:
+
+- Start when drilling begins.
+- Continue while the drill operates.
+- Stop when drilling stops or completes.
+- Not play multiple overlapping instances.
+
+Make the drilling activity feel like operating real equipment while keeping the interaction simple for children.
+
+---
+
+# 8. REALISTIC SOUND DESIGN
+
+Increase the quality of the sound design across the game.
+
+Add appropriate audio for:
+
+- Rover movement.
+- Wheel movement.
+- Scanning.
+- Drilling.
+- Sample collection.
+- Resource processing.
+- Solar panel deployment.
+- Construction.
+- Equipment connections.
+- Power station activation.
+- Alerts.
+- Mission completion.
+- Menu interactions.
+
+Sounds should match the action.
+
+Do not use random sound effects.
+
+Use subtle ambient sound where appropriate.
+
+Provide independent volume controls for narration, sound effects and background music.
+
+Avoid excessive audio repetition.
+
+---
+
+# 9. IMPROVE GAME ANIMATIONS
+
+The current game needs more engaging animations.
+
+Increase the quality and frequency of meaningful animations across all phases.
+
+The aim is to fascinate children and make the experience feel alive.
+
+Prioritize:
+
+- Cinematic lunar landscape transitions.
+- Rover movement.
+- Wheel movement.
+- Camera and scanner animations.
+- Scanning beams.
+- Drilling.
+- Soil collection.
+- Sample transfer.
+- Resource processing.
+- Solar panel movement.
+- Construction animations.
+- Equipment connections.
+- Power system activity.
+- Emergency alerts.
+- Map route animations.
+- Discovery celebrations.
+- Achievement unlocks.
+
+Animations must be smooth and purposeful.
+
+Avoid animations that are merely decorative and do not help explain the activity.
+
+Do not introduce excessive visual effects that obscure the gameplay.
+
+---
+
+# 10. SHOW UNBUILT OBJECTS USING DOTTED PREVIEW ANIMATIONS
+
+During the build phase, the player should be able to understand which objects have been built and which ones are still pending.
+
+When explaining a module or an unbuilt structure:
+
+- Display the object as a dotted or outlined preview.
+- Use a subtle animated dotted construction effect.
+- Show where the object will eventually be placed.
+- Explain its purpose through ASTRO narration.
+- Show what is required to build it.
+- Transition to the completed model when the player successfully constructs it.
+
+For example:
+
+When introducing a habitat, display a dotted outline of the habitat at the proposed location.
+
+ASTRO explains:
+
+"This will be our home on the Moon. It will help protect astronauts while they work here."
+
+When the player completes construction, animate the dotted outline into the actual structure.
+
+Apply the same concept to other unbuilt modules where appropriate.
+
+**Important:** Do not display unbuilt structures as if they already exist or are operational.
+
+Clearly distinguish:
+
+- Proposed structures.
+- Under-construction structures.
+- Completed structures.
+- Connected and operational structures.
+
+---
+
+# 11. SIMPLIFY THE BUILD PHASE
+
+The current Build Phase needs to be easier to understand.
+
+The purpose is not to make children operate a complicated engineering interface.
+
+Keep the important educational decisions but simplify the workflow.
+
+### Improved build workflow
+
+1. ASTRO introduces the construction mission.
+2. The player views the complete construction site.
+3. ASTRO recommends a suitable location and explains why.
+4. The player selects the habitat.
+5. A dotted preview shows where it will be placed.
+6. The player confirms the placement.
+7. The construction animation plays.
+8. The player places the solar panels.
+9. The player connects the basic power system.
+10. The player adds the required life-support equipment.
+11. ASTRO gives a simple explanation of each component.
+12. The player reviews the completed outpost.
+
+Avoid excessive configuration options.
+
+Do not force children to understand complicated engineering terminology.
+
+Keep resource requirements visible but simple.
+
+Use clear visual demonstrations instead of long text explanations.
+
+### Explain power support properly
+
+The current power support explanation needs improvement.
+
+Children should understand:
+
+- Solar panels collect sunlight and convert it into electricity.
+- The electricity powers equipment.
+- Power storage can save electricity for later use.
+- Equipment uses different amounts of energy.
+- The outpost needs enough energy to operate its important systems.
+
+Use a simple animated diagram:
+
+Sunlight → Solar Panels → Power System → Equipment
+
+Show the energy moving through the system.
+
+Explain that the solar panels generate electricity while receiving sunlight and that stored energy may be used when sunlight is unavailable.
+
+Clearly distinguish real principles from simplified game mechanics.
+
+---
+
+# 12. SIMPLIFY THE TEST AND SURVIVAL PHASE
+
+The current Test Phase is too complicated and needs a clearer gameplay structure.
+
+Do not remove the interactive survival activities.
+
+Instead, make each activity easier to understand and complete.
+
+### Improved approach
+
+Introduce one problem at a time.
+
+For each problem:
+
+1. ASTRO explains what has happened.
+2. The affected equipment is highlighted.
+3. An arrow points towards the relevant station.
+4. The player visits the equipment.
+5. A simple visual interface appears.
+6. The player performs the required action.
+7. The system responds visibly.
+8. ASTRO explains the result.
+
+### Example: Power problem
+
+ASTRO says:
+
+"Our outpost is using more energy than we have available. Let's visit the power station and see what we can do."
+
+The player:
+
+- Visits the power station.
+- Inspects the energy indicator.
+- Identifies equipment that can temporarily be switched off.
+- Turns off nonessential equipment.
+- Observes the power level improve.
+
+### Example: Water problem
+
+ASTRO says:
+
+"Our water supply is getting low. Let's check the water system and see whether we can improve our supply."
+
+The player:
+
+- Visits the water system.
+- Inspects the storage level.
+- Checks the recycling equipment.
+- Performs the required action.
+- Observes the updated status.
+
+### Example: Life-support problem
+
+ASTRO says:
+
+"Something is not working properly in our life-support system. Let's inspect it together."
+
+The player:
+
+- Visits the system.
+- Inspects the highlighted component.
+- Follows a visual repair instruction.
+- Tests the equipment.
+
+### Example: Temperature problem
+
+The player visits the habitat controls and adjusts the system to restore a suitable simulated temperature.
+
+### Example: Radiation warning
+
+The player receives a warning and guides the astronaut towards the designated protected area.
+
+### Important
+
+Do not make the survival phase a complicated technical simulation.
+
+It should be a sequence of simple, meaningful interactive activities.
+
+Keep the core principle:
+
+**Explain → Show → Let the player do it → Show the result.**
+
+Do not replace these activities with multiple-choice questions.
+
+---
+
+# 13. MINIMAL TEXT, MAXIMUM VISUAL STORYTELLING
+
+Reduce unnecessary text throughout the game.
+
+The current experience should become more visual and narrative.
+
+### Text requirements
+
+- Use short sentences.
+- Use simple words.
+- Avoid long paragraphs.
+- Avoid displaying technical definitions without explanation.
+- Avoid repeating information that ASTRO has already narrated.
+- Use visual icons where appropriate.
+- Highlight only the most important information.
+
+### Information panels
+
+Keep information panels short.
+
+Each panel should ideally contain:
+
+- Object name.
+- One or two simple sentences.
+- One fascinating fact.
+- Relevant reference image.
+- Source attribution.
+
+### Narration and text should complement each other
+
+Do not display the entire voiceover as a paragraph while ASTRO is speaking.
+
+Use short text prompts that reinforce the main idea.
+
+The player should be able to understand what is happening by watching the game.
+
+---
+
+# 14. NASA WEBSITE LINKS AND EDUCATIONAL REFERENCES
+
+During tutorials and important discoveries, provide an optional way to explore NASA's original resources.
+
+For example, when explaining lunar craters, provide a clearly labelled link such as:
+
+"Explore NASA's Moon images"
+
+The link should open the relevant official NASA page.
+
+Requirements:
+
+- Use verified official NASA URLs.
+- Match the link to the topic being explained.
+- Open external links safely.
+- Do not invent links.
+- Do not interrupt gameplay unnecessarily.
+
+These links should be optional.
+
+Children should be able to complete the game without leaving the application.
+
+---
+
+# 15. STRICT IMPLEMENTATION REQUIREMENTS
+
+Before modifying anything:
+
+1. Inspect the existing application.
+2. Identify the components responsible for each requested feature.
+3. Understand the current state-management logic.
+4. Identify existing bugs.
+5. Preserve working functionality.
+6. Plan the changes before implementation.
+
+### Specific bug-fixing requirements
+
+- Fix the Auto-Pilot Path tutorial checklist.
+- Fix incorrect tutorial completion detection.
+- Fix any duplicate narration playback.
+- Fix map and rover position synchronization.
+- Fix any inconsistent inventory or phase state.
+- Fix pause and resume behaviour if affected by the changes.
+
+### Do not:
+
+- Rebuild the existing application.
+- Remove existing working gameplay.
+- Replace real reference images with generic illustrations.
+- Invent NASA datasets.
+- Invent API integrations.
+- Display simulated values as NASA data.
+- Use decorative controls that do nothing.
+- Mark activities complete without player interaction.
+- Add unnecessary text.
+- Make Build and Test phases more complicated.
+- Change the existing mission storyline without a strong technical reason.
+
+### Implementation and verification
+
+After implementing each group of changes:
+
+- Test the relevant feature.
+- Verify that existing functionality still works.
+- Check that audio does not repeat.
+- Check that map and game state remain synchronized.
+- Check that tutorial completion is correct.
+- Check that NASA references are accurate.
+- Check that all new interactions work.
+
+Do not claim that a feature is complete unless it has actually been implemented and tested.
+
+If a requested capability is not supported by the current platform, explain the limitation and provide a practical alternative.
+
+---
+
+# 16. PRIORITY ORDER
+
+Implement the changes in the following order:
+
+**Priority 1 – Core experience**
+- Female deep storytelling voice.
+- Narrative voice guidance in every phase.
+- Correct voice playback and transitions.
+- Detailed phase-specific tutorials.
+- Minimal text and clearer explanations.
+
+**Priority 2 – NASA accuracy**
+- Real NASA images for investigated objects.
+- Verified lunar maps and mapping data.
+- Accurate dataset integration.
+- Correct image attribution.
+- Official NASA educational links.
+
+**Priority 3 – Gameplay interactions**
+- Hold-to-scan interaction.
+- Hold-to-drill interaction.
+- Improved scanning and drilling sounds.
+- Real-time map movement.
+- Auto-Pilot Path checklist bug fix.
+
+**Priority 4 – Visual improvements**
+- More engaging animations.
+- Animated lunar map.
+- Dotted previews for unbuilt structures.
+- Improved rover and equipment animations.
+- Better sound design.
+
+**Priority 5 – Usability**
+- Simplified Build Phase.
+- Clear power support explanation.
+- Simplified Test and Survival Phase.
+- Arrow-based tutorial assistance.
+- Improved player guidance.
+
+---
+
+# FINAL EXPECTATION
+
+I want the existing SPACE PIONEERS game to feel like a cinematic, realistic and interactive Moon exploration adventure.
+
+The player should hear a warm, deep female storyteller guiding them through the journey.
+
+They should see real NASA reference images whenever they investigate important objects.
+
+They should explore using a realistic lunar map that updates automatically as they move.
+
+They should hold to scan, hold to drill, hear appropriate sounds and see satisfying animations.
+
+They should receive detailed tutorials for every phase, with animated arrows and demonstrations whenever they need help.
+
+They should understand construction and survival without being overwhelmed by technical complexity.
+
+Most importantly, the game should tell a continuous story through visuals, narration and gameplay.
+
+**Preserve what already works. Fix what is broken. Improve what is confusing. Make every interaction more immersive. Maintain scientific accuracy throughout.**
